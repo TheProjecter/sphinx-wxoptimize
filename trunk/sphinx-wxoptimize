@@ -46,9 +46,11 @@ def convert(filename, options):
     fh = open(filename)
     text = fh.read()
     fh.close()
+    conf = getConf(options)
     
     soup = BeautifulSoup(text)
     removeCSS(soup)
+    removeSearch(soup, filename, conf)
     addAnchors(soup)
     convertNavigation(soup)
     removeUnnecessaryDocumentDivs(soup)
@@ -75,6 +77,24 @@ def removeCSS(soup):
     results = soup.findAll("link")
     for result in list(results):
         result.extract()
+
+def removeSearch(soup, filename, conf):
+    """The search page doesn't exist in htmlhelp, so the link is removed from
+    the master index.
+    """
+    filename = os.path.basename(filename)
+    if 'master_doc' in conf:
+        # The master index is set in the config file.
+        prefix = conf['master_doc'] + "."
+        if filename.startswith(prefix):
+            #print("Found index!!!")
+            
+            # It seems that the search page is hardcoded to be "search.html"
+            anchors = soup.findAll("a", attrs={"href": "search.html"})
+            for anchor in list(anchors):
+                #print("Found: %s" % anchor)
+                #print("Parent: %s" % anchor.parent)
+                anchor.parent.extract()
 
 def addAnchors(soup):
     """Add href anchors for sections
@@ -289,6 +309,19 @@ def replaceWithContents(tag):
         tag.parent.insert(i + index, content)
     tag.extract()
 
+conf_mapping = {}
+def getConf(options):
+    conf_path = os.path.join(options.confdir, "conf.py")
+    if conf_path in conf_mapping:
+        conf = conf_mapping[conf_path]
+    else:
+        conf = {}
+        if os.path.exists(conf_path):
+            execfile(conf_path, conf, conf)
+        else:
+            print("Error: can't find conf.py.  Some features will be unavailable")
+        conf_mapping[conf_path] = conf
+    return conf
 
 def convertAll(dirname, func, options):
     """Convert all HTML files in the source directory
@@ -310,11 +343,8 @@ def copyStatic(dirname, options):
     """Copy the static files to the destination directory"""
     # Find the configuration variables used in the sphinx project
     # FIXME: assumes that we are working in the same directory.
-    conf_path = os.path.join(options.confdir, "conf.py")
-    if os.path.exists(conf_path):
-        conf = {}
-        execfile(conf_path, conf, conf)
-    else:
+    conf = getConf(options)
+    if not conf:
         print("Error: can't find conf.py to determine htmlhelp_basename")
         return
 
