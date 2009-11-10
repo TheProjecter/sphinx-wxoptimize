@@ -55,7 +55,7 @@ setup(name = "sphinx_wxoptimize",
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
-          'License :: OSI Approved :: GNU General Public License',
+          'License :: OSI Approved :: GNU General Public License (GPL)',
           'Programming Language :: Python',
           'Operating System :: OS Independent',
           'Topic :: Software Development :: Documentation',
