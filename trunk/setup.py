@@ -22,18 +22,12 @@ In your sphinx Makefile, change the htmlhelp target from::
 
     htmlhelp:
             $(SPHINXBUILD) -b htmlhelp $(ALLSPHINXOPTS) $(BUILDDIR)/htmlhelp
-            @echo
-            @echo "Build finished; now you can run HTML Help Workshop with the" \
-                  ".hhp project file in $(BUILDDIR)/htmlhelp."
 
 to::
 
     htmlhelp:
             $(SPHINXBUILD) -b htmlhelp $(ALLSPHINXOPTS) $(BUILDDIR)/htmlhelp
             sphinx-wxoptimize _build/htmlhelp
-            @echo
-            @echo "Build finished; now you can run HTML Help Workshop with the" \
-                  ".hhp project file in $(BUILDDIR)/htmlhelp."
 
 """
 
