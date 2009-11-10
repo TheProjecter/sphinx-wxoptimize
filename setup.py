@@ -29,6 +29,13 @@ to::
             $(SPHINXBUILD) -b htmlhelp $(ALLSPHINXOPTS) $(BUILDDIR)/htmlhelp
             sphinx-wxoptimize _build/htmlhelp
 
+
+Development
+===========
+
+Please use http://code.google.com/p/sphinx-wxoptimize/ to report any bugs, add
+any feature requests, or check out the subversion source code repository.
+
 """
 
 
@@ -41,8 +48,7 @@ setup(name = "sphinx_wxoptimize",
       license = "GPL",
       author = "Rob McMullen",
       author_email = "robm@users.sourceforge.net",
-      url = "http://code.google.com/p/sphinx-wxoptimize/",
-      download_url = "http://code.google.com/p/sphinx-wxoptimize/downloads/list",
+      url = "http://pypi.python.org/pypi/sphinx-wxoptimize/",
       scripts = ['sphinx-wxoptimize'],
       
       platforms = 'any',
