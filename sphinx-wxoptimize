@@ -338,6 +338,8 @@ def convertAll(dirname, func, options):
     
     if options.destdir:
         copyStatic(dirname, options)
+    else:
+        removeJavascript(dirname, options)
 
 def copyStatic(dirname, options):
     """Copy the static files to the destination directory"""
@@ -362,6 +364,30 @@ def copyStatic(dirname, options):
             print "cp %s %s" % (src, os.path.join(options.destdir, os.path.basename(src)))
         shutil.copy(src, os.path.join(options.destdir, os.path.basename(src)))
     
+    removeJavascript(options.destdir, options)
+
+def removeJavascript(dirname, options):
+    """Remove unnecessary javascript and css files from the _static directory
+    since they are unused after the conversion and just take up space.
+    
+    """
+    conf = getConf(options)
+    if not conf:
+        print("Error: can't find conf.py to determine html_static_path")
+        return
+    
+    static_paths = conf['html_static_path']
+    if options.verbose:
+        print("Removing Javascript and CSS from %s" % static_paths)
+    for path in static_paths:
+        subdir = os.path.join(dirname, path)
+        #print(subdir)
+        exts = ["*.js", "*.css"]
+        for ext in exts:
+            for filename in glob.glob(os.path.join(subdir, ext)):
+                if options.verbose:
+                    print("removing %s" % filename)
+                os.remove(filename)
 
 if __name__ == "__main__":
     from optparse import OptionParser
