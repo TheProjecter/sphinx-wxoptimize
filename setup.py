@@ -30,12 +30,30 @@ to::
             sphinx-wxoptimize _build/htmlhelp
 
 
+Installation
+============
+
+Installation is through the usual python packaging commands, either by
+downloading the source archive and installing manually::
+
+    python setup.py install
+
+or using easy_install::
+
+    easy_install sphinx-wxoptimize
+
+Using easy_install will automatically install the prerequisite BeautifulSoup__
+library.
+
+__ http://pypi.python.org/pypi/BeautifulSoup
+
 Development
 ===========
 
-Please use http://code.google.com/p/sphinx-wxoptimize/ to report any bugs, add
-any feature requests, or check out the subversion source code repository.
+Please use the `Google Code`__ site to report any bugs, add any feature
+requests, or check out the subversion source code repository.
 
+__ http://code.google.com/p/sphinx-wxoptimize/
 """
 
 
