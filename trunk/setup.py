@@ -15,6 +15,19 @@ be integrated into your ``make htmlhelp`` target that will automatically
 reprocess the sphinx-generated htmlhelp files and convert them to be better
 rendered in the wxPython or wxWidgets wxHtmlHelpController.
 
+Features
+========
+
+Currently converts the following to be better rendered in wxHtmlHelpController:
+
+* fixes anchor links
+* removes extra linebreaks caused by div tags
+* adds a line break after center-aligned images
+* fixes left margin issues of mulitple paragraphs in definition lists 
+* removes unnecessary CSS and JavaScript
+* removes the search link from the index page
+
+
 Automatic Integration with Sphinx
 =================================
 
