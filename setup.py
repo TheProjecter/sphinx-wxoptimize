@@ -27,7 +27,7 @@ to::
 
     htmlhelp:
             $(SPHINXBUILD) -b htmlhelp $(ALLSPHINXOPTS) $(BUILDDIR)/htmlhelp
-            sphinx-wxoptimize _build/htmlhelp
+            sphinx-wxoptimize $(BUILDDIR)/htmlhelp
 
 
 Installation
@@ -54,12 +54,29 @@ Please use the `Google Code`__ site to report any bugs, add any feature
 requests, or check out the subversion source code repository.
 
 __ http://code.google.com/p/sphinx-wxoptimize/
+
+
+ChangeLog
+=========
+
+1.1
+---
+
+* Now removes unnecessary CSS and JavaScript files from _static directory to
+  reduce the size of the distributed HtmlHelp.  The wxHtmlHelpController can't
+  use the CSS and JavaScript anyway, so there's no need to include it.
+
+1.0
+---
+
+* Initial release
+
 """
 
 
 
 setup(name = "sphinx_wxoptimize",
-      version = "1.0",
+      version = "1.1",
       description = "Convert sphinx-generated htmlhelp files into versions optimized for reading using the wxHtmlHelp browser",
       long_description = long_description,
       keywords = "sphinx, htmlhelp, python, wxwidgets, wxpython, documentation",
