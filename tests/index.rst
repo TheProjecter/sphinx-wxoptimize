@@ -15,6 +15,8 @@ Contents:
    anchors
    fixDefinitionLists
    indexTargets
+   otherPageReferenceWorks
+   otherPageReferenceFails
 
 Indices and tables
 ==================

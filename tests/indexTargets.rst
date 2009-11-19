@@ -1,3 +1,11 @@
+*******************
+Link Target Failed?
+*******************
+
+If you clicked on a hyperlink to that said *Link Target from Other Page* and
+ended up here, you've hit a bug in the wxHtmlHelp window.
+
+
 ********
 Indexing
 ********
@@ -66,3 +74,14 @@ to
 go.
 
 The :envvar:`PWD` environmental variable holds the current working directory.
+
+
+.. _bottomofpage:
+
+Link Target from Other Page
+===========================
+
+This is a sample link target.  Other pages that use this reference for a target
+should scroll all the way down to the bottom of the page.
+
+There is a bug in the wxHtmlHelp system that prevents this in some cases.
