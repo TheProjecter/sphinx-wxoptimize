@@ -242,8 +242,9 @@ def fixDefinitionLists(soup):
     replacement_list = []
     count = 0
     for dd in dd_lists:
-        #print("Found dd: %s" % dd)
-        if len(dd.contents) > 1:
+        paragraphs = dd.findAll("p")
+        if len(paragraphs) > 0:
+            #print("Found paragraphs: %s" % paragraphs)
             # Add dummy paragraph that will get replaced in processing
             tag = Tag(soup, "p", attrs=[("id", "%d" % count)])
             count += 1

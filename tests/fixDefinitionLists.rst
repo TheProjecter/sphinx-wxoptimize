@@ -7,6 +7,10 @@ Single Paragraph
     This works correctly.
 Another Single Paragraph
     This also works correctly.
+Single Paragraph with Inline Markup
+    The italics following this *should appear in the sentence* and not starting
+    their own paragraph.  This next set of italics should also appear *in the
+    same paragraph* not starting a new paragraph.
 Two Paragraphs:
     In unmodified sphinx-generated htmlhelp, this paragraph is indented
     properly but has an unnecessary blank line before it.
