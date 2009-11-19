@@ -57,6 +57,7 @@ def convert(filename, options):
     removeUnnecessaryHighlightDivs(soup)
     fixAlignCenter(soup)
     fixDefinitionLists(soup)
+    fixIndexTargets(soup)
     
     if options.destdir:
         if not os.path.exists(options.destdir):
@@ -303,6 +304,23 @@ def fixDefinitionLists(soup):
             
     for dummy, dd in replacement_list:
         dummy.extract()
+
+def fixIndexTargets(soup):
+    """Fix targets of index hrefs
+    
+    This function is similar to L{addAnchors}; it converts <span> tags used
+    as targets for index links into <a name> tags that are understood by the
+    wxHtmlHelp system.
+    """
+    results = soup.findAll("span", attrs={"class": "target"})
+    for result in list(results):
+        for name, value in result.attrs:
+            if name == "id":
+                tag = Tag(soup, "a", attrs=[("name", result["id"])])
+                result.replaceWith(tag)
+                break
+
+
 
 def replaceWithContents(tag):
     index = tag.parent.contents.index(tag)
