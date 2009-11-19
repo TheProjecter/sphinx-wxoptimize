@@ -65,6 +65,8 @@ def convert(filename, options):
         outfile = os.path.join(options.destdir, os.path.basename(filename))
     else:
         outfile = filename
+    if options.testprefix:
+        outfile = options.testprefix + filename
     fh = open(outfile, "w")
     fh.write(str(soup))
     fh.close()
@@ -194,15 +196,8 @@ def removeUnnecessaryDocumentDivs(soup):
     nav_lists = soup.findAll("div", "document")
     for nav in nav_lists:
         body = nav.find("div", "body")
-        
-        first_section = None
-        for item in list(body.contents):
-            if not first_section:
-                if hasattr(item, 'contents'):
-                    first_section = item
-                    nav.replaceWith(item)
-            else:
-                first_section.append(item)
+        nav.replaceWith(body)
+        replaceWithContents(body)
 
 def removeUnnecessaryHighlightDivs(soup):
     """The div wrappers used to highlight preformatted text only serve to
@@ -415,6 +410,7 @@ if __name__ == "__main__":
     parser.add_option("-v", action="store_true", dest="verbose", default=False, help="Be verbose when operating")
     parser.add_option("-c", action="store", dest="confdir", default="", help="Specify the directory containing the .rst files if not running in that directory.")
     parser.add_option("-o", action="store", dest="destdir", default="", help="Specify an alternate directory for output files rather than overwriting the source htmlhelp files")
+    parser.add_option("-t", action="store", dest="testprefix", default="", help="For testing purposes, use the prefix for all generated HTML files instead of overwriting the files")
     (options, args) = parser.parse_args()
     
     if not options.confdir:
