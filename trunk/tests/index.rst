@@ -14,6 +14,7 @@ Contents:
    basicFormatting
    anchors
    fixDefinitionLists
+   indexTargets
 
 Indices and tables
 ==================
