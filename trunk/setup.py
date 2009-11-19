@@ -27,6 +27,14 @@ Currently converts the following to be better rendered in wxHtmlHelpController:
 * removes unnecessary CSS and JavaScript
 * removes the search link from the index page
 
+Example
+=======
+
+For an example of the output of ``sphinx-wxoptimize``, visit the
+`Peppy User Manual`__.
+
+__ http://peppy.flipturn.org/manual/index.html
+
 
 Automatic Integration with Sphinx
 =================================
@@ -72,6 +80,12 @@ __ http://code.google.com/p/sphinx-wxoptimize/
 ChangeLog
 =========
 
+1.2
+---
+
+* Fixed bug in single paragraph definition lists including inline markup
+  (italics, bold, etc.)
+
 1.1
 ---
 
@@ -89,7 +103,7 @@ ChangeLog
 
 
 setup(name = "sphinx_wxoptimize",
-      version = "1.1",
+      version = "1.2",
       description = "Convert sphinx-generated htmlhelp files into versions optimized for reading using the wxHtmlHelp browser",
       long_description = long_description,
       keywords = "sphinx, htmlhelp, python, wxwidgets, wxpython, documentation",
